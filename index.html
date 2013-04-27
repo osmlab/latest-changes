@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <link rel='stylesheet' type='text/css' href='css/style.css' />
+        <link rel='stylesheet' type='text/css' href='css/site.css' />
+        <meta http-equiv='content-type' content='text/html; charset=utf-8' />
+        <link href='js/locationfilter/src/locationfilter.css' rel='stylesheet' />
+        <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.css" />
+        <!--[if lte IE 8]>
+            <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.ie.css" />
+        <![endif]-->
+        <script src="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.js"></script>
+    </head>
+    <body>
+        <div class='container pad2'>
+            <h2>OSM Change Report</h2>
+            <div class='affix col6 pad2'>
+                <button class='col12 pad1' id='run'>run report</button>
+                <div class='col12' id='map'></div>
+            </div>
+            <div class='margin6 col6 pad2' id='results'><div>
+        </div>
+        <script src='js/d3.v3.min.js'></script>
+        <script src='js/moment.min.js'></script>
+        <script src='js/locationfilter/src/locationfilter.js'></script>
+        <script src='js/leaflet-osm.js'></script>
+        <script src='js/site.js'></script>
+    </body>
+</html>

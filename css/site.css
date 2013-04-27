@@ -1,0 +1,38 @@
+a {
+    color:darkred !important;
+}
+#map {
+    height:400px;
+}
+
+#run {
+    background:darkred;
+    color:#fff;
+    border:0;
+    font:normal 18px/20px 'Helvetica Neue';
+    margin-top:10px;
+}
+
+.result {
+    border-bottom:1px solid #eee;
+}
+
+.affix {
+    position:fixed;
+}
+
+a.l {
+    padding:2px;
+    text-decoration:underline;
+    font-size:13px;
+    margin:0 4px;
+}
+
+.active {
+    font-weight:bold;
+}
+
+h2 {
+    margin:0;
+    padding:0 20px;
+}
