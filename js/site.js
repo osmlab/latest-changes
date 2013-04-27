@@ -1,5 +1,7 @@
 var map = L.map('map', { }).setView([37.7, -97.3], 15);
 
+L.hash(map);
+
 L.tileLayer('http://a.tiles.mapbox.com/v3/tmcw.map-l1m85h7s/{z}/{x}/{y}.png')
     .addTo(map);
 
