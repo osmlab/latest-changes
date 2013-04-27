@@ -8,6 +8,10 @@ L.tileLayer('http://a.tiles.mapbox.com/v3/tmcw.map-l1m85h7s/{z}/{x}/{y}.png')
 
 var locationFilter = new L.LocationFilter().addTo(map);
 
+locationFilter.on('change', function() {
+    d3.select('#run').attr('disabled', 'false');
+});
+
 function run() {
     var bounds = locationFilter.getBounds();
     locationFilter.disable();

@@ -1,6 +1,7 @@
 a {
     color:darkred !important;
 }
+
 #map {
     height:400px;
 }
@@ -11,6 +12,11 @@ a {
     border:0;
     font:normal 18px/20px 'Helvetica Neue';
     margin-top:10px;
+    transition:background 200ms linear;
+}
+
+#run[disabled=disabled] {
+    background:lightgrey;
 }
 
 .result {
@@ -32,7 +38,7 @@ a.l {
     font-weight:bold;
 }
 
-h2 {
+h2, p {
     margin:0;
     padding:0 20px;
 }
