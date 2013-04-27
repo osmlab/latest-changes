@@ -1,29 +1,26 @@
 var map = L.map('map', { }).setView([37.7, -97.3], 15);
+var layer = null;
 
 L.hash(map);
+
+map.getZoom() > 15 ?
+    d3.select('#map').classed('zoom-in', false) :
+    d3.select('#map').classed('zoom-in', true);
 
 L.tileLayer('http://a.tiles.mapbox.com/v3/tmcw.map-l1m85h7s/{z}/{x}/{y}.png')
     .addTo(map);
 
-var locationFilter = new L.LocationFilter().addTo(map);
-
-locationFilter.on('change', function() {
-    d3.select('#run').node().removeAttribute('disabled');
-});
-
 function run() {
-    var bounds = locationFilter.getBounds();
-    locationFilter.disable();
+    var bounds = map.getBounds();
     d3.xml('http://www.openstreetmap.org/api/0.6/map?bbox=' +
         bounds.getSouthWest().lng + ',' +
         bounds.getSouthWest().lat + ',' +
         bounds.getNorthEast().lng + ',' +
         bounds.getNorthEast().lat // + ',' +
         ).on('load', function(xml) {
+            layer && map.removeLayer(layer);
 
-            var layer = new L.OSM.DataLayer(xml).addTo(map);
-
-            map.fitBounds(layer.getBounds());
+            layer = new L.OSM.DataLayer(xml).addTo(map);
 
             var bytime = [];
 
@@ -63,7 +60,6 @@ function run() {
                     return d == _;
                 });
                 resetStyle();
-                map.fitBounds(d.feature.getBounds());
                 d.feature.setStyle({ color: '#0f0' });
                 if (d3.event) d3.event.preventDefault();
             }
@@ -115,5 +111,13 @@ function run() {
 
     }).get();
 }
-
-d3.select('#run').on('click', run);
+map.on('moveend', function() {
+    if (map.getZoom() > 13) {
+        d3.select('#map').classed('zoom-in', false);
+        run();
+    } else {
+        d3.select('#map').classed('zoom-in', true);
+        layer && map.removeLayer(layer);
+        layer = null;
+    }
+});

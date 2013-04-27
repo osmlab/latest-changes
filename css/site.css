@@ -5,19 +5,13 @@ a {
 
 #map {
     height:400px;
+    opacity: 1;
+    transition: opacity .5s ease-in-out;
+    -moz-transition: opacity .5s ease-in-out;
+    -webkit-transition: opacity .5s ease-in-out;
 }
-
-#run {
-    background:darkred;
-    color:#fff;
-    border:0;
-    font:normal 18px/20px 'Helvetica Neue';
-    margin-top:10px;
-    transition:background 200ms linear;
-}
-
-#run[disabled=disabled] {
-    background:lightgrey;
+#map.zoom-in {
+    opacity: .3;
 }
 
 .result {
