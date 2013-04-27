@@ -1,7 +1,4 @@
-var map = L.map('map', {
-    minZoom: 14,
-    maxZoom: 18
-}).setView([37.7, -97.3], 15);
+var map = L.map('map', { }).setView([37.7, -97.3], 15);
 
 L.tileLayer('http://a.tiles.mapbox.com/v3/tmcw.map-l1m85h7s/{z}/{x}/{y}.png')
     .addTo(map);
