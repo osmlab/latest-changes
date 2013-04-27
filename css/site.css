@@ -1,4 +1,5 @@
 a {
+    text-decoration:underline;
     color:darkred !important;
 }
 
@@ -25,6 +26,10 @@ a {
 
 .affix {
     position:fixed;
+}
+
+a.load {
+    text-decoration:none;
 }
 
 a.l {

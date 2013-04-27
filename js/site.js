@@ -73,13 +73,17 @@ function run() {
            rl.append('span').classed('deemphasize', true).text('edited ');
 
            rl.append('span').text(function(d) {
-               return moment(d.time).format('MMMM Do YYYY, h:mm:ss a ');
+               return moment(d.time).format('MMM Do YYYY, h:mm:ss a ');
            });
 
            rl.append('span').classed('deemphasize', true).text('by ');
 
-           rl.append('span').text(function(d) {
+           rl.append('a').text(function(d) {
                return d.feature.feature.user + ' ';
+           })
+           .attr('target', '_blank')
+           .attr('href', function(d) {
+               return 'http://openstreetmap.org/user/' + d.feature.feature.user;
            });
 
            rl.append('a').attr('class', 'l changeset-link').text(function(d) {
