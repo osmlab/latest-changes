@@ -136,7 +136,8 @@ function run() {
                layer.eachLayer(function(l) {
                    l.setStyle({
                        color: colint(datescale(new Date(l.feature.timestamp))),
-                       opacity: 0.8
+                       opacity: 0.4,
+                       weight: 6
                    });
                });
            }
