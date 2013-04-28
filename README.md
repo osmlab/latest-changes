@@ -1,4 +1,4 @@
-# osm-change-report
+# OSM Latest Changes
 
 Recent changes in OpenStreetMap, the simple way.
 
