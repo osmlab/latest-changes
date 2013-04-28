@@ -2,7 +2,7 @@ a,
 a:hover,
 a:visited {
     text-decoration:underline;
-    color:darkred;
+    color:inherit;
 }
 
 #map {
@@ -63,7 +63,7 @@ h2, p {
   overflow: hidden;
   }
   .changeset:first-letter { text-transform: capitalize; }
-  .changeset a { color:  rgb(51, 51, 51); text-decoration: none;}
+  .changeset a { text-decoration: none;}
   .result.active .changeset,
   .result:hover .changeset { height: auto; }
   .changeset:first-line { font-weight: bold; font-size: 18px; }

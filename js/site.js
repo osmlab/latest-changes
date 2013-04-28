@@ -76,6 +76,10 @@ function run() {
                 .selectAll('div.result')
                 .data(bytime, function(d) {
                     return d.id;
+                })
+                .attr('class', 'result')
+                .style('color', function(l) {
+                    return colint(datescale(l.time));
                 });
             allresults.exit().remove();
 
