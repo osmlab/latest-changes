@@ -88,7 +88,10 @@ function run() {
 
             var rl = allresults.enter()
                 .append('div')
-                .attr('class', 'result');
+                .attr('class', 'result')
+                .style('color', function(l) {
+                    return colint(datescale(l.time));
+                });
             allresults.order();
 
             function click(d) {
