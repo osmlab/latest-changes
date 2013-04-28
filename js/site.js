@@ -1,14 +1,25 @@
-var map = L.map('map', { }).setView([37.7, -97.3], 16);
+var map = L.map('map', { });
 var layer = null;
 
 L.hash(map);
 
-map.getZoom() > 15 ?
-    d3.select('#map').classed('zoom-in', false) :
-    d3.select('#map').classed('zoom-in', true);
-
 L.tileLayer('http://a.tiles.mapbox.com/v3/tmcw.map-l1m85h7s/{z}/{x}/{y}.png')
     .addTo(map);
+
+function updateMap() {
+    if (map.getZoom() > 13) {
+        d3.select('#map').classed('faded', true);
+        d3.select('#zoom-in').classed('hide', true);
+        run();
+    } else {
+        d3.select('#map').classed('faded', true);
+        d3.select('#zoom-in').classed('hide', false);
+        layer && map.removeLayer(layer);
+        layer = null;
+    }
+}
+
+updateMap();
 
 function run() {
     var bounds = map.getBounds();
@@ -18,10 +29,11 @@ function run() {
         bounds.getNorthEast().lng + ',' +
         bounds.getNorthEast().lat // + ',' +
         ).on('load', function(xml) {
+            d3.select('#map').classed('faded', false);
             layer && map.removeLayer(layer);
 
             layer = new L.OSM.DataLayer(xml).addTo(map);
-
+console.log(layer);
             var bytime = [];
 
             layer.eachLayer(function(l) {
@@ -111,13 +123,4 @@ function run() {
 
     }).get();
 }
-map.on('moveend', function() {
-    if (map.getZoom() > 13) {
-        d3.select('#map').classed('zoom-in', false);
-        run();
-    } else {
-        d3.select('#map').classed('zoom-in', true);
-        layer && map.removeLayer(layer);
-        layer = null;
-    }
-});
+map.on('moveend', updateMap);

@@ -21,8 +21,9 @@ L.OSM.DataLayer = L.FeatureGroup.extend({
     if (!(features instanceof Array)) {
       features = this.buildFeatures(features);
     }
+    this.features = features;
 
-    for (var i = 0; i < features.length; i++) {
+    for (var i = 0; i < this.features.length; i++) {
       var feature = features[i], layer;
 
       if (feature.type === "node") {

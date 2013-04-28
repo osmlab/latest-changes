@@ -10,8 +10,11 @@ a {
     -moz-transition: opacity .5s ease-in-out;
     -webkit-transition: opacity .5s ease-in-out;
 }
-#map.zoom-in {
+#map.faded {
     opacity: .3;
+}
+.hide {
+  display: none;
 }
 
 .result {
