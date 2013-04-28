@@ -35,13 +35,21 @@ function run() {
             layer = new L.OSM.DataLayer(xml).addTo(map);
 
             var bytime = [];
+            var changesets = {};
 
             layer.eachLayer(function(l) {
-                bytime.push({
+                changesets[l.feature.changeset] = changesets[l.feature.changeset] || {
+                    id: l.feature.changeset,
                     time: new Date(l.feature.timestamp),
-                    feature: l
-                });
+                    user: l.feature.user,
+                    comment: 'todo', // TODO: request from  http://wiki.openstreetmap.org/wiki/API_v0.6#Read:_GET_.2Fapi.2F0.6.2Fchangeset.2F.23id
+                    features: []
+                };
+                changesets[l.feature.changeset].features.push(l);
             });
+            for (var k in changesets) {
+                bytime.push(changesets[k]);
+            }
 
             layer.on('click', function(e) {
                 click({ feature: e.layer });
@@ -87,11 +95,11 @@ function run() {
            rl.append('span').classed('deemphasize', true).text('by ');
 
            rl.append('a').text(function(d) {
-               return d.feature.feature.user + ' ';
+               return d.user + ' ';
            })
            .attr('target', '_blank')
            .attr('href', function(d) {
-               return 'http://openstreetmap.org/user/' + d.feature.feature.user;
+               return 'http://openstreetmap.org/user/' + d.user;
            });
 
            rl.append('a').attr('class', 'l changeset-link').text(function(d) {
@@ -99,15 +107,7 @@ function run() {
            })
            .attr('target', '_blank')
            .attr('href', function(d) {
-               return 'http://openstreetmap.org/browse/changeset/' + d.feature.feature.changeset;
-           });
-
-           rl.append('a').attr('class', 'l item-link').text(function(d) {
-               return d.feature.feature.type;
-           })
-           .attr('target', '_blank')
-           .attr('href', function(d) {
-               return 'http://openstreetmap.org/browse/' + d.feature.feature.type + '/' + d.feature.feature.id + '/history';
+               return 'http://openstreetmap.org/browse/changeset/' + d.id;
            });
 
            function resetStyle() {
