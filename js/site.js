@@ -102,11 +102,11 @@ function run() {
                 });
                 resetStyle();
                 var id = d.id ? d.id : d.feature.feature.changeset;
-                var features = changesets[id].features;
-                for (var i = 0; i < features.length; i++) {
-                    // Why does this not highlight objects on pane?
-                    features[i].setStyle({ color: '#0f0' });
-                }
+                layer.eachLayer(function(l) {
+                    if (l.feature.changeset == id) {
+                        l.setStyle({ color: '#0f0' });
+                    }
+                });
                 if (d3.event) d3.event.preventDefault();
             }
 
