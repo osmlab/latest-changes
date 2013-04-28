@@ -17,10 +17,12 @@ function updateMap() {
     if (map.getZoom() > 13) {
         d3.select('#map').classed('faded', true);
         d3.select('#zoom-in').classed('hide', true);
+        d3.select('#results').classed('hide', false);
         run();
     } else {
         d3.select('#map').classed('faded', true);
         d3.select('#zoom-in').classed('hide', false);
+        d3.select('#results').classed('hide', true);
         layer && map.removeLayer(layer);
         layer = null;
     }
