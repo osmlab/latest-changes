@@ -121,7 +121,7 @@ function run() {
                    .on('load', function(xml) {
                        d3.select(t).html(
                            '<a href="http://openstreetmap.org/browse/changeset/' + d.id + '" target="_blank">' +
-                           L.OSM.getTags(xml).comment || '<div class="no-comment">-</div>' +
+                           (L.OSM.getTags(xml).comment || '<div class="no-comment">&ndash;</div>') +
                            '</a>'
                        );
                    })
