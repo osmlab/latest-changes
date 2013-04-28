@@ -81,10 +81,7 @@ function run() {
 
             var rl = allresults.enter()
                 .append('div')
-                .attr('class', 'result')
-                .style('color', function(l) {
-                    return colint(datescale(l.time));
-                });
+                .attr('class', 'result');
             allresults.order();
 
             function click(d) {
@@ -105,13 +102,6 @@ function run() {
 
            rl.append('a').classed('load', true).html('&larr; ').attr('href', '#')
            .on('click', click);
-           rl.append('span').classed('deemphasize', true).text('edited ');
-
-           rl.append('span').text(function(d) {
-               return moment(d.time).format('MMM Do YYYY, h:mm:ss a ');
-           });
-
-           rl.append('span').classed('deemphasize', true).text('by ');
 
            rl.append('a').text(function(d) {
                return d.user + ' ';
@@ -121,19 +111,19 @@ function run() {
                return 'http://openstreetmap.org/user/' + d.user;
            });
 
-           rl.append('a').attr('class', 'l changeset-link').text(function(d) {
-               return 'changeset';
-           })
-           .attr('target', '_blank')
-           .attr('href', function(d) {
-               return 'http://openstreetmap.org/browse/changeset/' + d.id;
+           rl.append('span').attr('class', 'date').text(function(d) {
+               return moment(d.time).format('MMM Do YYYY, h:mm:ss a ');
            });
 
            rl.append('div').attr('class', 'changeset').each(function(d) {
                var t = this;
                d3.xml('http://www.openstreetmap.org/api/0.6/changeset/' + d.id)
                    .on('load', function(xml) {
-                       d3.select(t).text(L.OSM.getTags(xml).comment);
+                       d3.select(t).html(
+                           '<a href="http://openstreetmap.org/browse/changeset/' + d.id + '" target="_blank">' +
+                           L.OSM.getTags(xml).comment || '<div class="no-comment">-</div>' +
+                           '</a>'
+                       );
                    })
                    .get();
                });
