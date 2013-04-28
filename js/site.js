@@ -1,4 +1,4 @@
-var map = L.map('map', { });
+var map = L.map('map', { }).setView([37.7, -97.3], 16);
 var layer = null;
 
 L.hash(map);
