@@ -80,7 +80,10 @@ function run() {
                     return d == _;
                 });
                 resetStyle();
-                d.feature.setStyle({ color: '#0f0' });
+                var features = changesets[d.feature.feature.changeset].features;
+                for (var i = 0; i < features.length; i++) {
+                    features[i].setStyle({ color: '#0f0' });
+                }
                 if (d3.event) d3.event.preventDefault();
             }
 
