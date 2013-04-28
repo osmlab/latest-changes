@@ -33,7 +33,7 @@ function run() {
             layer && map.removeLayer(layer);
 
             layer = new L.OSM.DataLayer(xml).addTo(map);
-console.log(layer);
+
             var bytime = [];
 
             layer.eachLayer(function(l) {
