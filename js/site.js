@@ -64,8 +64,8 @@ function run() {
                 .range([0, 1]);
 
             var colint = d3.interpolateRgb('#000', '#f00');
-
-            var rl = d3.select('#results')
+            var results = d3.select('#results');
+            var rl = results
                 .selectAll('div.result')
                 .data(bytime)
                 .enter()
@@ -76,11 +76,15 @@ function run() {
                 });
 
             function click(d) {
-                rl.classed('active', function(_) {
-                    return d == _;
+                results
+                    .selectAll('div.result')
+                    .classed('active', function(_) {
+                        return _.id == (d.id || d.feature.feature.changeset);
                 });
                 resetStyle();
-                var features = changesets[d.feature.feature.changeset].features;
+                var features = d.features ?
+                     d.features :
+                     changesets[d.feature.feature.changeset].features;
                 for (var i = 0; i < features.length; i++) {
                     features[i].setStyle({ color: '#0f0' });
                 }
