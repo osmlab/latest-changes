@@ -85,5 +85,5 @@ h2, p {
   .changeset:first-letter { text-transform: capitalize; }
   .changeset a { text-decoration: none;}
   .result.active .changeset,
-  .result:hover .changeset { height: auto; }
+  .result:hover .changeset { height: auto; min-height: 35px;}
   .changeset:first-line { font-weight: bold; font-size: 18px; }
