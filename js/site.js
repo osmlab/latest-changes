@@ -146,4 +146,8 @@ function run() {
 
     }).get();
 }
-map.on('moveend', updateMap);
+var timeOutId = 0
+map.on('moveend', function() {
+    clearTimeout(timeOutId);
+    timeOutId = setTimeout(updateMap, 500);
+});
