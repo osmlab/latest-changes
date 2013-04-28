@@ -65,15 +65,20 @@ function run() {
 
             var colint = d3.interpolateRgb('#000', '#f00');
             var results = d3.select('#results');
-            var rl = results
+            var allresults = results
                 .selectAll('div.result')
-                .data(bytime)
-                .enter()
+                .data(bytime, function(d) {
+                    return d.id;
+                });
+            allresults.exit().remove();
+
+            var rl = allresults.enter()
                 .append('div')
                 .attr('class', 'result')
                 .style('color', function(l) {
                     return colint(datescale(l.time));
                 });
+            allresults.order();
 
             function click(d) {
                 results
