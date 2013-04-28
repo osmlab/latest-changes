@@ -104,7 +104,7 @@ function run() {
                 if (d3.event) d3.event.preventDefault();
             }
 
-           rl.append('a').classed('load', true).html('&larr; ').attr('href', '#')
+           rl.append('a').classed('load', true).html('&rarr; ').attr('href', '#')
            .on('click', click);
 
            rl.append('a').text(function(d) {

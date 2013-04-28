@@ -5,6 +5,10 @@ a:visited {
     color:inherit;
 }
 
+#heading {
+  padding-bottom: 20px;
+  }
+
 #map {
     height:400px;
     opacity: 1;

@@ -14,13 +14,18 @@
     </head>
     <body>
         <div class='container pad2'>
-            <h2>OSM Latest Changes</h2>
-            <p>Explore latest changes on OpenStreetMap</p>
-            <div class='affix col6 pad2'>
-                <div class='col12' id='map' class='faded'></div>
-                <div id='zoom-in' class='hide'>Zoom in to view changes</div>
+            <div class='col6 pad2'>
+              <div id='heading'>
+                <h2>OSM Latest Changes</h2>
+                <p>Explore latest changes on OpenStreetMap</p>
+              </div>
+              <div id='results'>
+              </div>
             </div>
-            <div class='margin6 col6 pad2' id='results'><div>
+            <div class='affix margin6 col6 pad2'>
+              <div class='col12' id='map' class='faded'></div>
+              <div id='zoom-in' class='hide'>Zoom in to view changes</div>
+            <div>
         </div>
         <script src='js/d3.v3.min.js'></script>
         <script src='js/moment.min.js'></script>
