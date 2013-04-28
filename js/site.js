@@ -52,11 +52,6 @@ function run() {
                     comment: '',
                     features: []
                 };
-                d3.xml('http://www.openstreetmap.org/api/0.6/changeset/' + l.feature.changeset)
-                    .on('load', function(xml) {
-                        changesets[l.feature.changeset].comment = L.OSM.getTags(xml).comment;
-                    })
-                    .get();
                 changesets[l.feature.changeset].features.push(l);
             });
             for (var k in changesets) {
@@ -99,9 +94,8 @@ function run() {
                         return _.id == (d.id || d.feature.feature.changeset);
                 });
                 resetStyle();
-                var features = d.features ?
-                     d.features :
-                     changesets[d.feature.feature.changeset].features;
+                var id = d.id ? d.id : d.feature.feature.changeset;
+                var features = changesets[id].features;
                 for (var i = 0; i < features.length; i++) {
                     // Why does this not highlight objects on pane?
                     features[i].setStyle({ color: '#0f0' });
@@ -135,9 +129,14 @@ function run() {
                return 'http://openstreetmap.org/browse/changeset/' + d.id;
            });
 
-           rl.append('div').attr('class', 'changeset').text(function(d) {
-               return d.comment;
-           });
+           rl.append('div').attr('class', 'changeset').each(function(d) {
+               var t = this;
+               d3.xml('http://www.openstreetmap.org/api/0.6/changeset/' + d.id)
+                   .on('load', function(xml) {
+                       d3.select(t).text(L.OSM.getTags(xml).comment);
+                   })
+                   .get();
+               });
 
            function resetStyle() {
                layer.eachLayer(function(l) {
