@@ -33,7 +33,8 @@ updateMap();
 
 function run() {
     var bounds = map.getBounds();
-    d3.xml('http://www.openstreetmap.org/api/0.6/map?bbox=' +
+    // Use Overpass API call compatible to OSM's "http://www.openstreetmap.org/api/0.6/map?bbox="
+    d3.xml('http://www.overpass-api.de/api/xapi?map?bbox=' +
         bounds.getSouthWest().lng + ',' +
         bounds.getSouthWest().lat + ',' +
         bounds.getNorthEast().lng + ',' +
